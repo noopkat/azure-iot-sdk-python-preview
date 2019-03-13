@@ -33,6 +33,6 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
-    install_requires=["six>=1.12.0,<2.0.0"],
+    install_requires=["six>=1.12.0,<2.0.0", "azure-iot-common"],
     packages=find_packages(exclude=["tests"]),
 )
