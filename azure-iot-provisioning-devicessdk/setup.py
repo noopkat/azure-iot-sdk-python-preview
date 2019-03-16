@@ -33,6 +33,14 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
-    install_requires=["six>=1.12.0,<2.0.0", "azure-iot-common"],
-    packages=find_packages(exclude=["tests"]),
+    install_requires=[
+        "azure-iot-common",
+        "six>=1.12.0,<2.0.0",
+        "paho-mqtt>=1.4.0,<2.0.0",
+        "transitions>=0.6.8,<1.0.0",
+        "requests>=2.20.0,<3.0.0",
+        "requests-unixsocket>=0.1.5,<1.0.0",
+    ],
+    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3*, <4",
+    packages=find_packages(exclude=["tests", "samples"]),
 )
