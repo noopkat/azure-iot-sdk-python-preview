@@ -82,6 +82,13 @@ def test_connect_triggers_client_connect(MockMqttClient, MockSsl):
             [1234],
             id="on_subscribe => on_mqtt_subscribed",
         ),
+        pytest.param(
+            "on_unsubscribe",
+            [None, None, 1235],
+            "on_mqtt_unsubscribed",
+            [1235],
+            id="on_unsubscribe => on_mqtt_unsubscribed",
+        ),
     ],
 )
 def test_mqtt_client_callback_triggers_provider_callback(
@@ -109,7 +116,6 @@ def test_disconnect_calls_loopstop_on_mqttclient(MockMqttClient):
     mqtt_provider = MQTTProvider(fake_device_id, fake_hostname, fake_username)
     mqtt_provider.disconnect()
 
-    mock_mqtt_client.loop_stop.assert_called_once_with()
     mock_mqtt_client.disconnect.assert_called_once_with()
 
 

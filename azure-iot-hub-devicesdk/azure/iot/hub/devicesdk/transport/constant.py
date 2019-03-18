@@ -6,6 +6,7 @@
 """This module contains constants realted to the transport package.
 """
 
+# Feature names
 C2D_MSG = "c2d"
 INPUT_MSG = "input"
 METHODS = "methods"
