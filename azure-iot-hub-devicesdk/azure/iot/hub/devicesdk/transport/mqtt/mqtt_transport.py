@@ -659,6 +659,27 @@ class MQTTTransport(AbstractTransport):
         self._trig_add_action_to_pending_queue(action)
         self.feature_enabled[constant.C2D_MSG] = False
 
+    def _enable_methods(self, callback=None, qos=1):
+        """
+        Helper function to enable methods
+
+        :param callback: callback which is called when the feature is enabled.
+        :param qos: Quality of Serivce level
+        """
+        action = SubscribeAction(self._get_method_topic_for_subscribe(), qos, callback)
+        self._trig_add_action_to_pending_queue(action)
+        self.feature_enabled[constant.METHODS] = True
+
+    def _disable_methods(self, callback=None):
+        """
+        Helper function to disable methods
+
+        :param callback: callback which is called when the feature is disabled
+        """
+        action = UnsubscribeAction(self._get_method_topic_for_subscribe(), callback)
+        self._trig_add_action_to_pending_queue(action)
+        self.feature_enabled[constant.METHODS] = False
+
 
 def _is_c2d_topic(split_topic_str):
     """
