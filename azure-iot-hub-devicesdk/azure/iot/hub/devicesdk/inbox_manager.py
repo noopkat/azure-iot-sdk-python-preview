@@ -76,6 +76,12 @@ class InboxManager(object):
 
         return inbox
 
+    def clear_all_method_calls(self):
+        """Delete all method calls currently in inboxes. Also delete named inboxes.
+        """
+        self.generic_method_call_inbox.clear()
+        self.named_method_call_inboxes.clear()
+
     def route_input_message(self, input_name, incoming_message):
         """Route an incoming input message to the correct input message Inbox.
 

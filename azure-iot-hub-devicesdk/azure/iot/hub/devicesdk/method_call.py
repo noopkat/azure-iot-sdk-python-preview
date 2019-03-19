@@ -12,21 +12,18 @@ class MethodCall(object):
 
     :ivar str name: The name of the method being called.
     :ivar payload: The payload being sent with the call.
-    :ivar int response_timeout: The time in seconds before a response to the call is invalid.
     """
 
-    def __init__(self, request_id, name, payload, response_timeout):
+    def __init__(self, request_id, name, payload):
         """Initializer for a MethodCall.
 
         :param str request_id: The request id of the method being called.
         :param str name: The name of the method being called.
         :param payload: The payload being sent with the call.
-        :param int response_timeout: The time in seconds before a response to the call is invalid.
         """
         self._request_id = request_id
         self._name = name
         self._payload = payload
-        self._response_timeout = response_timeout
 
     @property
     def name(self):
@@ -35,7 +32,3 @@ class MethodCall(object):
     @property
     def payload(self):
         return self._payload
-
-    @property
-    def response_timeout(self):
-        return self._response_timeout

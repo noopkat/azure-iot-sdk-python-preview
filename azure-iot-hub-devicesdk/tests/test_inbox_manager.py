@@ -78,6 +78,14 @@ class InboxManagerSharedTests(object):
     ):
         pass
 
+    @pytest.mark.skip(reason="Not Implemented")
+    def test_clear_all_method_calls_clears_generic_method_call_inbox(self, manager):
+        pass
+
+    @pytest.mark.skip(reason="Not Implemented")
+    def test_clear_all_method_calls_deletes_named_method_call_inboxes(self, manager):
+        pass
+
     @abc.abstractmethod
     def test_route_c2d_message_adds_message_to_c2d_message_inbox(self, manager, message):
         pass

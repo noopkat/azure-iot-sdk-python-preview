@@ -33,9 +33,24 @@ class GenericClientAsync(GenericClient):
         """
         super().__init__(transport)
         self._inbox_manager = InboxManager(inbox_type=AsyncClientInbox)
+        self._transport.on_transport_connected = self._on_state_change
+        self._transport.on_transport_disconnected = self._on_state_change
         self._transport.on_transport_method_call_message_received = (
             self._inbox_manager.route_method_call
         )
+
+    def _on_state_change(self, new_state):
+        """Handler to be called by the transport upon a connection state change."""
+        self.state = new_state
+        logger.info("Connection State - {}".format(self.state))
+
+        if new_state is "disconnected":
+            self._on_disconnected()
+
+    def _on_disconnected(self):
+        """Helper handler that is called upon a a transport disconnect"""
+        # clear pending method requests that are now doomed
+        self._inbox_manager.clear_all_method_calls()
 
     async def connect(self):
         """Connects the client to an Azure IoT Hub or Azure IoT Edge Hub instance.
