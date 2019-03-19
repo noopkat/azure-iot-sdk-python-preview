@@ -49,8 +49,8 @@ class GenericClientAsync(GenericClient):
 
     def _on_disconnected(self):
         """Helper handler that is called upon a a transport disconnect"""
-        # clear pending method requests that are now doomed
         self._inbox_manager.clear_all_method_calls()
+        logger.info("Cleared all pending method calls due to disconnect")
 
     async def connect(self):
         """Connects the client to an Azure IoT Hub or Azure IoT Edge Hub instance.
